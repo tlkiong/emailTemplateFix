@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="204.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.settings.view.InitialSettingsViewController">
+   <children>
+      <VBox prefHeight="310.0" prefWidth="549.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Set Initial Settings">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <GridPane hgap="5.0" prefHeight="98.0" prefWidth="509.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Flickr Api Key" />
+                        <Label fx:id="getApiLbl" onMouseClicked="#getFlickrApiKey" onMouseEntered="#changeApiLblColour" onMouseExited="#originalApiLblColour" stylesheets="@../../../../../gromailer/src/resources/css_files/LabelStyle.css" text="Get Api Key Here">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label text="Flickr Shared Secret" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Flickr NSID" GridPane.rowIndex="2" />
+                        <Label fx:id="getNsidLbl" onMouseClicked="#getFlickrNsid" onMouseEntered="#changeNsidLblColour" onMouseExited="#originalNsidLblColour" stylesheets="@../../../../../gromailer/src/resources/css_files/LabelStyle.css" text="Get NSID Here">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="flickrClientApiKeyTxtField" GridPane.columnIndex="1" />
+                  <TextField fx:id="flickrClientSharedSecretTxtField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="flickrClientNsidTxtField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="145.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="289.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
+            <GridPane prefHeight="50.0" prefWidth="499.0" stylesheets="@../../../../../gromailer/src/resources/css_files/ButtonStyle.css">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="250.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleExit" styleClass="greyBtn" text="Cancel" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleDone" styleClass="redBtn" text="Done" GridPane.columnIndex="1" />
+                     </children>
+                  </HBox>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

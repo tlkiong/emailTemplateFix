@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="170.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.common.util.AuthorizeFlickrViewController">
+   <children>
+      <VBox layoutX="-120.0" layoutY="-170.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="-120.0" layoutY="-170.0" spacing="5.0">
+               <children>
+                  <Label layoutX="-120.0" layoutY="-170.0" text="Click the below button to authorize yourself on Flickr" />
+                  <Button layoutX="-19.0" layoutY="-146.0" mnemonicParsing="false" onAction="#openAuthFlickrLink" style="-fx-background-color: FF0000;" text="Click Here" />
+               </children>
+            </VBox>
+            <TextField fx:id="tokenTxtField" layoutX="-25.0" layoutY="-116.0" promptText="Paste in the token it gives you" />
+            <GridPane prefHeight="65.0" prefWidth="345.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleAuthorize" styleClass="redBtn" stylesheets="@../../../resources/css_files/ButtonStyle.css" text="Authorize" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="greyBtn" stylesheets="@../../../resources/css_files/ButtonStyle.css" text="CANCEL" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
