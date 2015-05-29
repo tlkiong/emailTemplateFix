@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressIndicator;
 import main.MainApp;
 import main.common.util.Resource;
 import main.common.util.UploadToFlickrUsingFlickr4Java;
@@ -32,6 +32,7 @@ import com.google.common.collect.HashBiMap;
 public class ProcessingFolderViewController {
 	private HashSet<File> nonHtmlSet = new HashSet<File>();
 	private HashSet<File> htmlSet = new HashSet<File>();
+	// fileNameWithExtension, url
 	private BiMap<String, String> imgNameToUrl = HashBiMap.create();
 	// Flickr4Java
 	UploadMetaData metaData;
@@ -161,6 +162,7 @@ public class ProcessingFolderViewController {
 					Resource.getMainApp().showErrorDialog("ERROR",
 							"Image Upload Error", "Unable to upload image to flickr");
 					setProcessingStatusLblTxt(fileNameWithExtension+" failed to upload\nPlease choose another template");
+					fail = true;
 					break;
 				} else {
 					try {
@@ -180,9 +182,7 @@ public class ProcessingFolderViewController {
 							if (photoInfo != null) {
 								imgNameToUrl.put(fileNameWithExtension, photoInfo.getOriginalUrl());
 								setProcessingStatusLblTxt(fileNameWithExtension+" upload complete");
-								//TODO: update the progress to done
 							} else {
-								//TODO: update progress to fail
 								setProcessingStatusLblTxt(fileNameWithExtension+" failed to upload\nPlease choose another template");
 								System.out.println("fail to upload?");
 								fail = true;
@@ -199,13 +199,32 @@ public class ProcessingFolderViewController {
 			}
 		}
 		
-		if(!fail){
+		if((!fail)&&(imgNameToUrl.size()>0)){
 			addImgUrlToHtml();
 		}
 	}
 	
 	private void addImgUrlToHtml(){
-		
+		for(File file : htmlSet){
+			try {
+				countLines(file.toString());
+				
+				String wholeFileAsString = FileUtils.readFileToString(file);
+				
+				for (Entry<String, String> imgNameWithExtensionAndUrl :imgNameToUrl.entrySet()){
+					wholeFileAsString.replaceAll(imgNameWithExtensionAndUrl.getKey(), imgNameWithExtensionAndUrl.getValue());
+				}
+				
+				File newFile = new File(Resource.getFolderToProcess().getPath()+File.separatorChar+Resource.getFolderToProcess().getName()+"-"+file.getName());
+				
+				FileUtils.writeStringToFile(newFile, wholeFileAsString);
+				
+			} catch (IOException e) {
+				Resource.getMainApp().showExceptionDialog("HTML File Not Found", e);
+//				e.printStackTrace();
+			}
+			
+		}
 	}
 	
 	private int countLines(String filename) throws IOException {
