@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import main.common.util.Resource;
 import main.processingFolder.view.ProcessingFolderViewController;
@@ -29,6 +31,22 @@ public class MainApp extends Application {
 	private Stage mainStage;
 	private static Resource resource;
 	
+	private static final int COUNTDOWN_TIMER_MINUTE = 1800;
+	private int countdownTime;
+	private Timer countdownTimer;
+	
+	public static int getStaticCountdownTimerMinute() {
+		return COUNTDOWN_TIMER_MINUTE;
+	}
+
+	public int getCountdownTime() {
+		return countdownTime;
+	}
+
+	public void setCountdownTime(int countdownTime) {
+		this.countdownTime = countdownTime;
+	}
+	
 	/**
 	 * show the initial settings view
 	 */
@@ -52,7 +70,7 @@ public class MainApp extends Application {
 			// e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * show the initial settings view
 	 */
@@ -76,8 +94,8 @@ public class MainApp extends Application {
 			// e.printStackTrace();
 		}
 	}
-	
-	public void showProcessingFolder(){
+
+	public void showProcessingFolder() {
 		try {
 			// Load person overview
 			FXMLLoader loader = new FXMLLoader();
@@ -96,7 +114,7 @@ public class MainApp extends Application {
 			// e.printStackTrace();
 		}
 	}
-	
+
 	public void showInformationDialog(String title, String headerTxt,
 			String contentTxt) {
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -148,7 +166,8 @@ public class MainApp extends Application {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error");
 		alert.setHeaderText("Error Detected!");
-		alert.setContentText(contentTxt + "\nPlease e-mail us the following Error :)");
+		alert.setContentText(contentTxt
+				+ "\nPlease e-mail us the following Error :)");
 
 		// Create expandable Exception.
 		StringWriter sw = new StringWriter();
@@ -198,7 +217,7 @@ public class MainApp extends Application {
 		// If user click cancel or close dialog, its "cancel"
 		return userChoice;
 	}
-	
+
 	/**
 	 * Returns the main stage.
 	 * 
@@ -207,11 +226,11 @@ public class MainApp extends Application {
 	public Stage getMainStage() {
 		return this.mainStage;
 	}
-	
-	public static Resource getResource (){
+
+	public static Resource getResource() {
 		return MainApp.resource;
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -222,29 +241,38 @@ public class MainApp extends Application {
 		this.mainStage.setTitle("Email Template Customizer");
 		this.mainStage.initStyle(StageStyle.DECORATED);
 		MainApp.resource = new Resource(this);
-		
+		startCountdown();
 		this.mainStage.setOnCloseRequest(t -> {
 			Platform.exit();
 			System.exit(0);
 		});
-		
-//		this.mainStage.maximizedProperty().addListener(new ChangeListener<Boolean>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Boolean> observable,
-//					Boolean oldValue, Boolean newValue) {
-//				showHomepage();
-//			}
-//		});
-//		
-//		this.mainStage.iconifiedProperty().addListener(new ChangeListener<Boolean>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Boolean> observable,
-//					Boolean oldValue, Boolean newValue) {
-//				showHomepage();
-//			}
-//		});
 	}
 
+	public void startCountdown() {
+		countdownTimer = new Timer();
+		countdownTimer.schedule(new RemindTask(), 1, // initial delay
+				getCountdownTime() * 1000); // subsequent rate
+	}
+
+	class RemindTask extends TimerTask {
+		public void run() {
+			// do something
+			silentCheckForUpdates();
+		}
+	}
+	
+	public void silentCheckForUpdates() {
+//		ApplicationLauncher.launchApplicationInProcess("347", null,
+//				new ApplicationLauncher.Callback() {
+//					public void exited(int exitValue) {
+//						// TODO add your code here (not invoked on event
+//						// dispatch thread)
+//					}
+//
+//					public void prepareShutdown() {
+//						// TODO add your code here (not invoked on event
+//						// dispatch thread)
+//					}
+//				}, ApplicationLauncher.WindowMode.FRAME, null);
+	}
 }
