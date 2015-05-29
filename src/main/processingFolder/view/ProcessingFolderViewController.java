@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -91,8 +92,15 @@ public class ProcessingFolderViewController {
 					ex);
 			// e.printStackTrace();
 		}
-
-		startProcessingFolder();
+		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				startProcessingFolder();
+			}
+		});
+		
 	}
 
 	public Label getStatusLbl() {
@@ -133,7 +141,7 @@ public class ProcessingFolderViewController {
 		}
 		if((htmlSet.size()>0)&&(nonHtmlSet.size()>0)){
 			setStatusLblTxt("'"+Resource.getFolderToProcess().getName()+"' folder processed complete\nNow uploading images");
-//			uploadImageToFlickr();
+			uploadImageToFlickr();
 		} else if(htmlSet.size()<=0){
 			setStatusLblTxt("'"+Resource.getFolderToProcess().getName()+"' has no HTML file. Please put your HTML file inside");
 			Resource.getMainApp().showErrorDialog("ERROR", "No HTML file", "'"+Resource.getFolderToProcess().getName()+"' has no HTML file\nPlease put your HTML file inside");
@@ -194,6 +202,7 @@ public class ProcessingFolderViewController {
 					} catch (Exception e) {
 						// e.printStackTrace();
 						Resource.getMainApp().showExceptionDialog("Upload Image Error", e);
+						break;
 					}
 				}
 			}
