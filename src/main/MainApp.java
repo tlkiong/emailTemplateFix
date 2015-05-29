@@ -1,10 +1,12 @@
 package main;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Optional;
 
 import main.common.util.Resource;
+import main.processingFolder.view.ProcessingFolderViewController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -68,6 +70,26 @@ public class MainApp extends Application {
 			mainStage.centerOnScreen();
 			mainStage.setResizable(true);
 
+			mainStage.show();
+		} catch (Exception e) {
+			showExceptionDialog("MainApp Homepage View - Exception: ", e);
+			// e.printStackTrace();
+		}
+	}
+	
+	public void showProcessingFolder(){
+		try {
+			// Load person overview
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("processingFolder/view/ProcessingFolderView.fxml"));
+			AnchorPane processingFolderView = (AnchorPane) loader.load();
+
+			// Set person overview onto center of a scene
+			Scene scene = new Scene(processingFolderView);
+			mainStage.setScene(scene);
+			mainStage.centerOnScreen();
+			mainStage.setResizable(true);
 			mainStage.show();
 		} catch (Exception e) {
 			showExceptionDialog("MainApp Homepage View - Exception: ", e);

@@ -9,6 +9,7 @@ public class Resource {
 	
 	private UserSettings userSettings;
 	private static MainApp mainApp;
+	private static File folderToProcess;
 	
 	public Resource(MainApp mainApp){
 		this.userSettings = new UserSettings();
@@ -59,6 +60,15 @@ public class Resource {
 	}
 
 	public void processFolder(File file) {
-		System.out.println("processing foldr?");
+		setFolderToProcess(file);
+		mainApp.showProcessingFolder();
+	}
+	
+	public static File getFolderToProcess(){
+		return folderToProcess;
+	}
+	
+	public static void setFolderToProcess(File file){
+		folderToProcess = file;
 	}
 }

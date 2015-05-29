@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.processingFolder.view.ProcessingFolderViewController">
+   <children>
+      <VBox layoutX="10.0" layoutY="25.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="statusLbl" text="Status" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7b9a7" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                        <Label layoutX="232.0" layoutY="100.0" text="Pending" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ff04" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                        <Label layoutX="232.0" layoutY="100.0" text="Done" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f6ff00" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                        <Label text="Processing" GridPane.columnIndex="2" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                        <Label layoutX="232.0" layoutY="100.0" text="Failed" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="124.0" spacing="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="All HTML Files" />
+                           </children>
+                        </HBox>
+                        <ListView fx:id="htmlListView" layoutX="31.0" layoutY="124.0" AnchorPane.leftAnchor="10.0" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="All Non HTML Files" />
+                           </children>
+                        </HBox>
+                        <ListView fx:id="nonHtmlListView" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
