@@ -242,6 +242,7 @@ public class MainApp extends Application {
 		this.mainStage.initStyle(StageStyle.DECORATED);
 		MainApp.resource = new Resource(this);
 		silentCheckForUpdates();
+		setCountdownTime(COUNTDOWN_TIMER_MINUTE);
 		startCountdown();
 		this.mainStage.setOnCloseRequest(t -> {
 			Platform.exit();
