@@ -30,11 +30,11 @@ public class MainApp extends Application {
 
 	private Stage mainStage;
 	private static Resource resource;
-	
+
 	private static final int COUNTDOWN_TIMER_MINUTE = 1800;
 	private int countdownTime;
 	private Timer countdownTimer;
-	
+
 	public static int getStaticCountdownTimerMinute() {
 		return COUNTDOWN_TIMER_MINUTE;
 	}
@@ -46,7 +46,7 @@ public class MainApp extends Application {
 	public void setCountdownTime(int countdownTime) {
 		this.countdownTime = countdownTime;
 	}
-	
+
 	/**
 	 * show the initial settings view
 	 */
@@ -241,6 +241,7 @@ public class MainApp extends Application {
 		this.mainStage.setTitle("Email Template Customizer");
 		this.mainStage.initStyle(StageStyle.DECORATED);
 		MainApp.resource = new Resource(this);
+		silentCheckForUpdates();
 		startCountdown();
 		this.mainStage.setOnCloseRequest(t -> {
 			Platform.exit();
@@ -260,9 +261,9 @@ public class MainApp extends Application {
 			silentCheckForUpdates();
 		}
 	}
-	
+
 	public void silentCheckForUpdates() {
-//		ApplicationLauncher.launchApplicationInProcess("347", null,
+//		ApplicationLauncher.launchApplicationInProcess("69", null,
 //				new ApplicationLauncher.Callback() {
 //					public void exited(int exitValue) {
 //						// TODO add your code here (not invoked on event
