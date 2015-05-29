@@ -10,39 +10,48 @@
    <children>
       <VBox layoutX="10.0" layoutY="25.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <VBox spacing="10.0">
                <children>
-                  <HBox alignment="CENTER_LEFT">
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
                      <children>
-                        <Label fx:id="statusLbl" text="Status" />
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label fx:id="statusLbl" text="Status" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#handleBackToHomepage" style="-fx-background-color: #BFBFBF; -fx-border-color: black;" text="Go Back" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                  <HBox spacing="20.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7b9a7" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-                        <Label layoutX="232.0" layoutY="100.0" text="Pending" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="5.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ff04" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-                        <Label layoutX="232.0" layoutY="100.0" text="Done" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="5.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f6ff00" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-                        <Label text="Processing" GridPane.columnIndex="2" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="5.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-                        <Label layoutX="232.0" layoutY="100.0" text="Failed" />
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a7b9a7" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                              <Label layoutX="232.0" layoutY="100.0" text="Pending" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ff04" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                              <Label layoutX="232.0" layoutY="100.0" text="Done" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f6ff00" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                              <Label text="Processing" GridPane.columnIndex="2" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="31.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
+                              <Label layoutX="232.0" layoutY="100.0" text="Failed" />
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                </children>
-            </HBox>
+            </VBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="124.0" spacing="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <children>
                   <VBox>
@@ -63,6 +72,20 @@
                            </children>
                         </HBox>
                         <ListView fx:id="nonHtmlListView" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Processing" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="processingStatusLbl" text="-" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

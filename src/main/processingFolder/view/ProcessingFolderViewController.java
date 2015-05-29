@@ -54,6 +54,8 @@ public class ProcessingFolderViewController {
 															// uploading.
 
 	@FXML
+	private Label processingStatusLbl;
+	@FXML
 	private ListView<String> nonHtmlListView;
 	@FXML
 	private ListView<String> htmlListView;
@@ -100,6 +102,14 @@ public class ProcessingFolderViewController {
 		this.statusLbl.setText(statusLbl);
 	}
 
+	public Label getProcessingStatusLbl() {
+		return processingStatusLbl;
+	}
+
+	public void setProcessingStatusLblTxt(String statusLbl) {
+		this.processingStatusLbl.setText(statusLbl);
+	}
+	
 	private void startProcessingFolder() {
 		setStatusLblTxt("Starting to process folder~");
 
@@ -120,24 +130,38 @@ public class ProcessingFolderViewController {
 				}
 			}
 		}
-		setStatusLblTxt("'"+Resource.getFolderToProcess().getName()+"' folder processed complete");
+		if((htmlSet.size()>0)&&(nonHtmlSet.size()>0)){
+			setStatusLblTxt("'"+Resource.getFolderToProcess().getName()+"' folder processed complete\nNow uploading images");
+//			uploadImageToFlickr();
+		} else if(htmlSet.size()<=0){
+			setStatusLblTxt("'"+Resource.getFolderToProcess().getName()+"' has no HTML file. Please put your HTML file inside");
+			Resource.getMainApp().showErrorDialog("ERROR", "No HTML file", "'"+Resource.getFolderToProcess().getName()+"' has no HTML file\nPlease put your HTML file inside");
+		} else if(nonHtmlSet.size()<=0){
+			setStatusLblTxt("'"+Resource.getFolderToProcess().getName()+"' has no image. Please put some image inside");
+			Resource.getMainApp().showErrorDialog("ERROR", "No image file", "'"+Resource.getFolderToProcess().getName()+"' has no image. Please put some image inside");
+		} else {
+			setStatusLblTxt("lalala Find me");
+			Resource.getMainApp().showErrorDialog("ERROR", "What Sorcery!", "lalala Find me");
+		}
 	}
 
 	public void uploadImageToFlickr() {
 		boolean fail = false;
 		for(File filePath : nonHtmlSet){
 			if (filePath != null) {
-				String fileNameWithExtension = filePath.toString().substring(
-						filePath.toString().lastIndexOf("/") + 1);
-				String fileNameWithoutExtension = fileNameWithExtension.substring(
-						0, fileNameWithExtension.lastIndexOf("."));
-
+				String fileNameWithExtension = filePath.getName();
+				String fileNameWithoutExtension = FilenameUtils.getBaseName(filePath.getName());
+						
 				metaData.setTitle(fileNameWithoutExtension);
 				metaData.setFilename(fileNameWithExtension);
-
+				
+				setProcessingStatusLblTxt("Uploading "+fileNameWithExtension);
+				
 				if (!uploadToFlickrUsingFlickr4Java.canUpload()) {
 					Resource.getMainApp().showErrorDialog("ERROR",
 							"Image Upload Error", "Unable to upload image to flickr");
+					setProcessingStatusLblTxt(fileNameWithExtension+" failed to upload\nPlease choose another template");
+					break;
 				} else {
 					try {
 						uploadToFlickrUsingFlickr4Java.getPrivacy();
@@ -155,9 +179,11 @@ public class ProcessingFolderViewController {
 									photoId, "");
 							if (photoInfo != null) {
 								imgNameToUrl.put(fileNameWithExtension, photoInfo.getOriginalUrl());
+								setProcessingStatusLblTxt(fileNameWithExtension+" upload complete");
 								//TODO: update the progress to done
 							} else {
 								//TODO: update progress to fail
+								setProcessingStatusLblTxt(fileNameWithExtension+" failed to upload\nPlease choose another template");
 								System.out.println("fail to upload?");
 								fail = true;
 								break;
@@ -203,5 +229,8 @@ public class ProcessingFolderViewController {
 	    }
 	}
 	
-	
+	@FXML
+	public void handleBackToHomepage(){
+		Resource.backToHomepage();
+	}
 }

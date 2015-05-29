@@ -71,4 +71,9 @@ public class Resource {
 	public static void setFolderToProcess(File file){
 		folderToProcess = file;
 	}
+	
+	public static void backToHomepage(){
+		folderToProcess = null;
+		mainApp.showHomepage();
+	}
 }

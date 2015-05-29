@@ -27,8 +27,7 @@ public class HomepageViewController {
 	
 	@FXML
 	private void initialize() {
-		folderName.setVisible(false);
-		
+		resetLabel();
 		contentPane.setOnDragOver(new EventHandler<DragEvent>() {
 
 			@Override
@@ -51,13 +50,18 @@ public class HomepageViewController {
 			public void handle(DragEvent event) {
 				contentPane.setStyle("-fx-border-color: none;"
 	                    + "-fx-background-color: none;");
-				folderName.setVisible(false);
+				resetLabel();
 			}
 		});
 		
 		
 //		WebEngine webEngine = oldWebView.getEngine();
 //		webEngine.load("https://www.google.com");
+	}
+	
+	private void resetLabel(){
+		folderName.setAlignment(Pos.CENTER);
+		folderName.setText("Please\nDRAG 'n' DROP\nYour\nFolder\nHere");
 	}
 	
 	private  void mouseDragOver(final DragEvent e) {
@@ -67,7 +71,6 @@ public class HomepageViewController {
         final boolean isAccepted = file.isDirectory();
  
         if (isAccepted) {
-        	folderName.setVisible(true);
         	folderName.setAlignment(Pos.CENTER);
         	folderName.setText("DROP\n\""+file.getName()+"\"\nfolder");
         	contentPane.setStyle("-fx-border-color: blue;"
