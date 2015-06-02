@@ -38,11 +38,11 @@ public class InitialSettingsViewController {
 	
 	@FXML
 	private void initialize() {
-		flickrClientApiKeyTxtField.setText(MainApp.getResource().getUserSettingsByKey(
+		flickrClientApiKeyTxtField.setText(Resource.getUserSettingsByKey(
 				USER_SETTINGS.FLICKR_CLIENT_API_KEY));
-		flickrClientSharedSecretTxtField.setText(MainApp.getResource().getUserSettingsByKey(
+		flickrClientSharedSecretTxtField.setText(Resource.getUserSettingsByKey(
 				USER_SETTINGS.FLICKR_CLIENT_SHARED_SECRET));
-		flickrClientNsidTxtField.setText(MainApp.getResource().getUserSettingsByKey(
+		flickrClientNsidTxtField.setText(Resource.getUserSettingsByKey(
 				USER_SETTINGS.FLICKR_CLIENT_NSID));
 	}
 	

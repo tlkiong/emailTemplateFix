@@ -7,7 +7,7 @@ import main.common.util.UserSettings.USER_SETTINGS;
 
 public class Resource {
 	
-	private UserSettings userSettings;
+	private static UserSettings userSettings;
 	private static MainApp mainApp;
 	private static File folderToProcess;
 	
@@ -39,16 +39,16 @@ public class Resource {
 		
 	}
 
-	public UserSettings getUserSettings() {
+	public static UserSettings getUserSettings() {
 		return userSettings;
 	}
 	
-	public String getUserSettingsByKey(USER_SETTINGS key) {
+	public static String getUserSettingsByKey(USER_SETTINGS key) {
 		return getUserSettings().getSettings(key);
 	}
 
 	public void setUserSettings(USER_SETTINGS key, String userSettings) {
-		this.userSettings.setSettings(key, userSettings);
+		Resource.userSettings.setSettings(key, userSettings);
 	}
 
 	public static MainApp getMainApp() {

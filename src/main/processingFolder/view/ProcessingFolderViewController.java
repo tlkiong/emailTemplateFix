@@ -221,7 +221,7 @@ public class ProcessingFolderViewController {
 				String wholeFileAsString = FileUtils.readFileToString(file);
 				
 				for (Entry<String, String> imgNameWithExtensionAndUrl :imgNameToUrl.entrySet()){
-					System.out.println("details:key "+imgNameWithExtensionAndUrl.getKey()+" :value: "+imgNameWithExtensionAndUrl.getValue());
+//					System.out.println("details:key "+imgNameWithExtensionAndUrl.getKey()+" :value: "+imgNameWithExtensionAndUrl.getValue());
 					wholeFileAsString = wholeFileAsString.replaceAll(imgNameWithExtensionAndUrl.getKey().trim(), imgNameWithExtensionAndUrl.getValue().trim());
 				}
 //				System.out.println("wholeFileAsString: "+wholeFileAsString);
